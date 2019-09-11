@@ -15,65 +15,33 @@ import { MonoText } from '../components/StyledText';
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
+      <View style={styles.headerBar}>
+        <Image
+          source={require('../assets/images/logo.png')}
+          style={{}}
+        />
+      </View>
       <ScrollView
         style={styles.container}
         contentContainerStyle={styles.contentContainer}>
-        <View style={styles.welcomeContainer}>
-          <Image
-            source={
-              __DEV__
-                ? require('../assets/images/robot-dev.png')
-                : require('../assets/images/robot-prod.png')
-            }
-            style={styles.welcomeImage}
-          />
+        <View>
+          <Text style={styles.textTitle}>Explore</Text>
+          <View style={styles.labelBar}></View>
         </View>
 
         <View style={styles.getStartedContainer}>
-          <DevelopmentModeNotice />
-
-          <Text style={styles.getStartedText}>Get started by opening</Text>
-
-          <View
-            style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-            <MonoText>screens/HomeScreen.js</MonoText>
-          </View>
-
-          <Text style={styles.getStartedText}>
-            Change this text and your app will automatically reload.
-          </Text>
+         
+        
         </View>
-
-        <View style={styles.helpContainer}>
-          <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
-            <Text style={styles.helpLinkText}>
-              Help, it didn’t automatically reload!
-            </Text>
-          </TouchableOpacity>
-        </View>
+        
       </ScrollView>
 
-      <View style={styles.tabBarInfoContainer}>
-        <Text style={styles.tabBarInfoText}>
-          This is a tab bar. You can edit it in:
-        </Text>
-
-        <View
-          style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-          <MonoText style={styles.codeHighlightText}>
-            navigation/MainTabNavigator.js
-          </MonoText>
-        </View>
-      </View>
     </View>
   );
 }
 
 HomeScreen.navigationOptions = {
-  //header: null,
-  title: 'MANDIS Fashion App',
-  headerStyle:{ backgroundColor: '#FFF'},
-  headerTitleStyle: { color: '#000' },
+  header: null,
 };
 
 function DevelopmentModeNotice() {
@@ -112,52 +80,33 @@ function handleHelpPress() {
 }
 
 const styles = StyleSheet.create({
+  headerBar: {
+    height: 80,
+    paddingTop: 20,
+    elevation: 4,
+    backgroundColor: '#fff',
+    color: '#000',
+    justifyContent: 'center',
+  },
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'rgba(0, 0, 0, 0.05)',
+
   },
-  developmentModeText: {
-    marginBottom: 20,
-    color: 'rgba(0,0,0,0.4)',
-    fontSize: 14,
-    lineHeight: 19,
-    textAlign: 'center',
+  textTitle: {
+    color: '#000000',
+    fontSize: 48,
+    fontWeight: 'bold',
+  },
+  labelBar: {
+    backgroundColor: '#C2128C',
+    height: 10,
+    width: 60,
   },
   contentContainer: {
-    paddingTop: 30,
-  },
-  welcomeContainer: {
-    alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 20,
-  },
-  welcomeImage: {
-    width: 100,
-    height: 80,
-    resizeMode: 'contain',
-    marginTop: 3,
-    marginLeft: -10,
-  },
-  getStartedContainer: {
-    alignItems: 'center',
-    marginHorizontal: 50,
-  },
-  homeScreenFilename: {
-    marginVertical: 7,
-  },
-  codeHighlightText: {
-    color: 'rgba(96,100,109, 0.8)',
-  },
-  codeHighlightContainer: {
-    backgroundColor: 'rgba(0,0,0,0.05)',
-    borderRadius: 3,
-    paddingHorizontal: 4,
-  },
-  getStartedText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    lineHeight: 24,
-    textAlign: 'center',
+    paddingTop: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
   },
   tabBarInfoContainer: {
     position: 'absolute',
