@@ -70,7 +70,10 @@ export default function HomeScreen() {
 }
 
 HomeScreen.navigationOptions = {
-  header: null,
+  //header: null,
+  title: 'MANDIS Fashion App',
+  headerStyle:{ backgroundColor: '#FFF'},
+  headerTitleStyle: { color: '#000' },
 };
 
 function DevelopmentModeNotice() {
