@@ -1,5 +1,4 @@
-import * as WebBrowser from 'expo-web-browser';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Image,
   Platform,
@@ -8,11 +7,40 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Animated,
 } from 'react-native';
 
+import FadeInView from '../components/FadeInView';
+import Colors from '../constants/Colors';
 import { MonoText } from '../components/StyledText';
+import GridList from 'react-native-grid-list';
+
+
+const items = [
+  { thumbnail: { uri: 'https://lorempixel.com/200/200/fashion' } },
+  { thumbnail: { uri: 'https://lorempixel.com/200/200/people' } },
+  { thumbnail: { uri: 'https://lorempixel.com/200/200/animals' } },
+  { thumbnail: { uri: 'https://lorempixel.com/200/200/city' } },
+];
 
 export default function HomeScreen() {
+
+  renderItem = ({ item, index }) => (
+    <Image style={styles.collections} source={item.thumbnail} />
+  );
+
+  const [fadeAdmin] = useState(new Animated.Value(0))  
+
+  React.useEffect(() => {
+    Animated.timing(
+      fadeAdmin,
+      {
+        toValue: 1,
+        duration: 2000,
+      }
+    ).start();
+  }, [])
+
   return (
     <View style={styles.container}>
       <View style={styles.headerBar}>
@@ -20,21 +48,29 @@ export default function HomeScreen() {
           source={require('../assets/images/logo.png')}
           style={{}}
         />
+        <Text>
+          Fashion App
+        </Text>
       </View>
-      <ScrollView
-        style={styles.container}
-        contentContainerStyle={styles.contentContainer}>
-        <View>
+      <Animated.ScrollView
+        style={[styles.container, {opacity: fadeAdmin, paddingHorizontal: 20, paddingVertical: 15,}]}
+        >
+        <View style={{}}>
           <Text style={styles.textTitle}>Explore</Text>
           <View style={styles.labelBar}></View>
         </View>
 
         <View style={styles.getStartedContainer}>
-         
-        
+          <GridList
+            showSeparator={false}
+            separatorBorderWidth={2}
+            data={items}
+            numColumns={2}
+            renderItem={this.renderItem}
+          />
         </View>
         
-      </ScrollView>
+      </Animated.ScrollView>
 
     </View>
   );
@@ -83,36 +119,6 @@ const styles = StyleSheet.create({
   headerBar: {
     height: 80,
     paddingTop: 20,
-    elevation: 4,
-    backgroundColor: '#fff',
-    color: '#000',
-    justifyContent: 'center',
-  },
-  container: {
-    flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.05)',
-
-  },
-  textTitle: {
-    color: '#000000',
-    fontSize: 48,
-    fontWeight: 'bold',
-  },
-  labelBar: {
-    backgroundColor: '#C2128C',
-    height: 10,
-    width: 60,
-  },
-  contentContainer: {
-    paddingTop: 10,
-    paddingLeft: 20,
-    paddingRight: 20,
-  },
-  tabBarInfoContainer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
     ...Platform.select({
       ios: {
         shadowColor: 'black',
@@ -124,27 +130,34 @@ const styles = StyleSheet.create({
         elevation: 20,
       },
     }),
-    alignItems: 'center',
-    backgroundColor: '#fbfbfb',
-    paddingVertical: 20,
-  },
-  tabBarInfoText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    textAlign: 'center',
-  },
-  navigationFilename: {
-    marginTop: 5,
-  },
-  helpContainer: {
-    marginTop: 15,
+    backgroundColor: '#fff',
+    color: '#000',
+    flexDirection: 'row',
+    paddingHorizontal: 20,
     alignItems: 'center',
   },
-  helpLink: {
-    paddingVertical: 15,
+  container: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.05)',
   },
-  helpLinkText: {
-    fontSize: 14,
-    color: '#2e78b7',
+  textTitle: {
+    color: '#000000',
+    fontSize: 48,
+    fontWeight: 'bold',
   },
+  labelBar: {
+    backgroundColor: Colors.primaryColor,
+    height: 10,
+    width: 60,
+  },
+  getStartedContainer: {
+    marginTop: 10,
+    flex: 1,
+  },
+  collections: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 10,
+  },
+
 });

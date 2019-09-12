@@ -91,12 +91,20 @@ ProfileStack.navigationOptions = {
 
 ProfileStack.path = '';
 
-const tabNavigator = createBottomTabNavigator({
-  HomeStack,
-  CollectionsStack,
-  CartStack,
-  ProfileStack,
-});
+const tabNavigator = createBottomTabNavigator(
+  {
+    HomeStack,
+    CollectionsStack,
+    CartStack,
+    ProfileStack,
+  },
+  {
+    tabBarOptions: {
+      activeTintColor: "#C2128C",
+      showLabel: false,
+    }
+  }
+);
 
 tabNavigator.path = '';
 
