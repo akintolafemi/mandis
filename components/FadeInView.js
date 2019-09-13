@@ -10,7 +10,7 @@ export default function FadeInView(props){
       fadeAdmin,
       {
         toValue: 1,
-        duration: 10000,
+        duration: 1000,
       }
     ).start();
   }, [])
@@ -19,7 +19,7 @@ export default function FadeInView(props){
     <Animated.View                 // Special animatable View
       style={{
         ...props.style,
-        opacity: fadeAdnim,         // Bind opacity to animated value
+        opacity: fadeAdmin,         // Bind opacity to animated value
       }}
     >
       {props.children}

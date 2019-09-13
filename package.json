@@ -31,6 +31,7 @@
     "react-native-grid-list": "^1.0.9",
     "react-native-web": "^0.11.4",
     "react-navigation": "^3.11.0",
+    "react-navigation-hooks": "^1.0.3",
     "react-redux": "^7.1.1"
   },
   "devDependencies": {

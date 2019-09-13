@@ -17,10 +17,10 @@ import GridList from 'react-native-grid-list';
 
 
 const items = [
-  { thumbnail: { uri: 'https://lorempixel.com/200/200/fashion' } },
-  { thumbnail: { uri: 'https://lorempixel.com/200/200/people' } },
-  { thumbnail: { uri: 'https://lorempixel.com/200/200/animals' } },
-  { thumbnail: { uri: 'https://lorempixel.com/200/200/city' } },
+  { thumbnail: { uri: 'https://lorempixel.com/400/400/fashion' } },
+  { thumbnail: { uri: 'https://lorempixel.com/400/400/people' } },
+  { thumbnail: { uri: 'https://lorempixel.com/400/400/animals' } },
+  { thumbnail: { uri: 'https://lorempixel.com/400/400/city' } },
 ];
 
 export default function HomeScreen() {
@@ -29,7 +29,7 @@ export default function HomeScreen() {
     <Image style={styles.collections} source={item.thumbnail} />
   );
 
-  const [fadeAdmin] = useState(new Animated.Value(0))  
+  const [fadeAdmin] = useState(new Animated.Value(0))
 
   React.useEffect(() => {
     Animated.timing(
@@ -62,14 +62,13 @@ export default function HomeScreen() {
 
         <View style={styles.getStartedContainer}>
           <GridList
-            showSeparator={false}
-            separatorBorderWidth={2}
+            itemStyle={{paddingVertical: 15, paddingHorizontal: 7}}
             data={items}
             numColumns={2}
             renderItem={this.renderItem}
           />
         </View>
-        
+
       </Animated.ScrollView>
 
     </View>
@@ -138,7 +137,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.05)',
+    backgroundColor: Colors.colorWhite,
   },
   textTitle: {
     color: '#000000',
@@ -153,11 +152,6 @@ const styles = StyleSheet.create({
   getStartedContainer: {
     marginTop: 10,
     flex: 1,
-  },
-  collections: {
-    width: '100%',
-    height: '100%',
-    borderRadius: 10,
   },
 
 });

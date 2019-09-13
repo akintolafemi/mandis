@@ -7,10 +7,24 @@ import HomeScreen from '../screens/HomeScreen';
 import CollectionsScreen from '../screens/CollectionsScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import CartScreen from '../screens/CartScreen';
+import LoginScreen from '../screens/LoginScreen';
+import RegisterScreen from '../screens/RegisterScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
   default: {},
+});
+
+const AppStack = createStackNavigator({
+  Login: {
+    screen: LoginScreen
+  },
+  Register: {
+    screen: RegisterScreen
+  },
+  Home: {
+    screen: HomeScreen,
+  },
 });
 
 const HomeStack = createStackNavigator(
@@ -108,4 +122,4 @@ const tabNavigator = createBottomTabNavigator(
 
 tabNavigator.path = '';
 
-export default tabNavigator;
+export default AppStack;
